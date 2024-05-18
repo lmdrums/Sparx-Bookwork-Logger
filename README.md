@@ -85,7 +85,7 @@ You will be logged in automatically and you can begin your homework.
 # Credits ❤️
 
 - A massive thank you to [Aritra (aritra-codes)](https://github.com/aritra-codes) for helping with some errors
-- We would thank you massively if you could support us by following us on GitHub and other socials
+- We would greatly appreciate it if you could support us by following us on GitHub and other socials
 
 <img src="https://github.com/lmdrums.png" alt="Profile picture of lmdrums" height="200" width="200"/> | <img src="https://github.com/aritra-codes.png" alt="Profile picture of aritra-codes" height="200" width="200"/>
 ---|---
