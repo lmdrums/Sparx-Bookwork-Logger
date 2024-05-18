@@ -84,7 +84,7 @@ def get_bookwork_image(bookwork: str) -> ImageTk.PhotoImage | None:
         return ImageTk.PhotoImage(resized)
    
 def end_hw_session() -> None:
-    folder_path = c.SCREENSHOTS_FOLDER_PATH
+    folder_path = get_resource_path(c.SCREENSHOTS_FOLDER_PATH)
     for filename in os.listdir(folder_path): 
         file_path = os.path.join(folder_path, filename)  
         os.remove(file_path)
@@ -113,9 +113,9 @@ def get_password() -> str:
     return password
 
 def get_url() -> str:
-    with open(c.URL_FILE, "r") as f:
+    with open(get_resource_path(c.URL_FILE), "r") as f:
         return f.read()
 
 def change_url(url: str) -> None:
-    with open(c.URL_FILE, "w") as f:
+    with open(get_resource_path(c.URL_FILE), "w") as f:
         f.write(url)
