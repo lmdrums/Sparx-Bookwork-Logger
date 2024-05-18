@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="readme_images/logo.png" alt="Sparx Bookwork Logger" width="200">
+  <img src="readme_images/logo.svg" alt="Sparx Bookwork Logger" width="200">
   <h1>Sparx Bookwork Logger</h1>
   <img alt="Stars" src="https://img.shields.io/github/stars/lmdrums/Sparx-Bookwork-Logger.svg">
   <img alt="Downloads" src="https://img.shields.io/github/downloads/lmdrums/Sparx-Bookwork-Logger/total.svg">
