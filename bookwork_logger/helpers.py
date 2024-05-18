@@ -33,8 +33,8 @@ def login(driver: webdriver.Chrome) -> None:
     try:
         driver.find_element(*c.COOKIE_ACCEPT_LOCATOR).click()
         driver.find_element(*c.LOGIN_BUTTON_LOCATOR).click()
-    except Exception as e:
-        print(e)
+    except Exception:
+        pass
 
 def question(gui, driver: webdriver.Chrome) -> None:
     """Gets data from question"""
@@ -72,8 +72,8 @@ def bookwork_check(gui, driver: webdriver.Chrome) -> None:
         time.sleep(c.POLLING_FREQUENCY)
         image = get_bookwork_image(bookwork)
         gui.bookwork_check(image, bookwork)
-    except Exception as e:
-        print(e)
+    except Exception:
+        pass
 
 def get_bookwork_image(bookwork: str) -> ImageTk.PhotoImage | None:
     image_path = get_resource_path(os.path.join(c.SCREENSHOTS_FOLDER_PATH, f"{bookwork}.png"))
