@@ -8,7 +8,7 @@ def main(gui):
     try:
         driver = webdriver.Chrome()
 
-        url = open(c.URL_FILE, "r").read()
+        url = open(h.get_resource_path(c.URL_FILE, "r")).read()
         driver.get(url)
 
         h.login(driver)
