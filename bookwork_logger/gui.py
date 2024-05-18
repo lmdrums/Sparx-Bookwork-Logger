@@ -181,10 +181,13 @@ class Settings(CTkToplevel):
         if username:
             if password:
                 if url:
-                    h.change_username_password(username, password)
-                    h.change_url(url)
-                    messagebox.showinfo("Success", "Settings saved successfully")
-                    self.lift()
+                    try:
+                        h.change_username_password(username, password)
+                        h.change_url(url)
+                        messagebox.showinfo("Success", "Settings saved successfully")
+                        self.lift()
+                    except Exception:
+                        messagebox.showerror("Error", "An error occured whilst trying to save settings")
                 else:
                     messagebox.showerror("Error", "Please enter a valid URL")
                     self.lift()
