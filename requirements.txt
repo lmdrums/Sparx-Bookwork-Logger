@@ -1,0 +1,7 @@
+selenium==4.20.0
+undetected-chromedriver==3.5.5
+customtkinter==5.2.2
+pillow==10.3.0
+python-dotenv==1.0.1
+setuptools==69.5.1
+notify-py==0.3.42
