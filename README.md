@@ -39,29 +39,28 @@ This project currently only works on [Windows](https://www.microsoft.com/en-gb/w
 
 ## Setup
 - **Web Setup:**
-
   - Go to [Sparx Maths](https://selectschool.sparxmaths.uk/)
   - Enter your school and click Continue:
-  </br>
-  ![Add school](readme_images/school.png)
+    </br>
+    ![Add school](readme_images/school.png)
   - You should now be at a login page:
-  </br>
-  ![Login page](readme_images/login.png)
+    </br>
+    ![Login page](readme_images/login.png)
   - Copy the link of this page and keep hold of it for later:
-  </br>
-  ![Link copy](readme_images/link_copy.png)
+    </br>
+    ![Link copy](readme_images/link_copy.png)
 
 - **App Setup:**
 
   - Navigate to the newly downloaded .exe file (see above)
   - Open the application
   - Go into 'Settings'
-  </br>
-  ![Settings window](readme_images/settings.png)
+    </br>
+    ![Settings window](readme_images/settings.png)
   - Type in your Sparx Username and Password in the corresponding boxes (these will be stored locally on your machine in a .env file)
   - Paste the URL you copied from earlier in the URL box
-  </br>
-  ![Settings inputs](readme_images/settings_entry.png)
+    </br>
+    ![Settings inputs](readme_images/settings_entry.png)
   - **Click Save to save your settings**
   - **Reload the application before starting to sync settings!**
 
@@ -83,7 +82,7 @@ You will be logged in automatically and you can begin your homework.
 
 ---
 
-# Credits ♥
+# Credits ❤️
 
 - A massive thank you to [Aritra (aritra-codes)](https://github.com/aritra-codes) for helping with some errors
 - We would thank you massively if you could support us by following us on GitHub and other socials
