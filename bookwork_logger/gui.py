@@ -31,7 +31,7 @@ class App(CTk):
         
         self.title(c.MAIN_TITLE)
         self.geometry(c.MAIN_GEOMETRY)
-        self.iconbitmap(c.WINDOW_ICON_PATH)
+        self.iconbitmap(h.get_resource_path(c.WINDOW_ICON_PATH))
         
         self.frame = CTkFrame(self)
         self.frame.pack(pady=20, padx=20, fill="both", expand=True)
@@ -131,7 +131,7 @@ class Settings(CTkToplevel):
 
         self.title(c.SETTINGS_TITLE)
         self.geometry(c.SETTINGS_GEOMETRY)
-        self.after(250, lambda: self.iconbitmap(c.WINDOW_ICON_PATH))
+        self.after(250, lambda: self.iconbitmap(h.get_resource_path(c.WINDOW_ICON_PATH)))
 
         self.frame = CTkFrame(self)
         self.frame.pack(pady=20, padx=20, fill="both", expand=True)
