@@ -92,8 +92,8 @@ def end_hw_session() -> None:
 def create_files() -> None:
     if not os.path.exists(get_resource_path(c.ENV_PATH)):
         open(get_resource_path(c.ENV_PATH), "w")
-        if not os.path.exists(c.URL_FILE):
-            open(c.URL_FILE, "w")
+        if not os.path.exists(get_resource_path(c.URL_FILE)):
+            open(get_resource_path(c.URL_FILE), "w")
         set_key(get_resource_path(c.ENV_PATH), "SPARXUSERNAME", "")
         set_key(get_resource_path(c.ENV_PATH), "PASSWORD", "")
 
