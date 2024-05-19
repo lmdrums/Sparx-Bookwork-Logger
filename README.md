@@ -33,7 +33,7 @@ This project currently only works on [Windows](https://www.microsoft.com/en-gb/w
 - Click on the **latest** release (on the right of the page, under the 'About' section)
 - Download the **'Sparx Bookwork Logger.zip'** file
 - **Add exception** (see above)
-- **Extract** the file
+- **Extract** the file *(This may take a couple of minutes)*
 - **Follow setup instructions below ⬇**
 - **Do your maths homework!**
 
