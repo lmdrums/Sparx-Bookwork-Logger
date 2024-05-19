@@ -78,7 +78,7 @@ You will be logged in automatically and you can begin your homework.
 - If you have completed a question and got it **correct**, please make sure you **leave enough time** to let the application get a **screenshot** of your answer, if not you may get a screenshot which looks like this:
   </br>
   ![Bad screenshot](readme_images/bad_screenshot.png)
-  - The application **will automatically** click the Continue button for you after a correct answer so you don't even need to press continue (except for XP Boost questions)
+  - The application **will automatically** click the Continue button for you after a correct answer so you don't even need to press continue
 
 ---
 
