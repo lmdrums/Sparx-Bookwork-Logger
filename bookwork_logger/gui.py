@@ -86,8 +86,7 @@ class App(CTk):
                 self.run_button.configure(text="Running...", fg_color=("#325882", "#254260"), state="disabled")
                 script(self)
                 self.run_button.configure(text="Launch Sparx", fg_color=("#3a7ebf", "#1f538d"), state="normal")
-            except Exception as e:
-                print(e)
+            except Exception:
                 self.run_button.configure(text="Launch Sparx", fg_color=("#3a7ebf", "#1f538d"), state="normal")
 
         thread = Thread(target=run_script)
