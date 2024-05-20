@@ -30,7 +30,7 @@ This project currently only works on [Windows](https://www.microsoft.com/en-gb/w
 - [McAfee Antivirus Exception](https://www.mcafee.com/support/?articleId=TS102056&page=shell&shell=article-view)
 
 **Main Installation:**
-- Click on the **latest** release (on the right of the page, under the 'About' section)
+- Navigate to the [**latest release**](https://github.com/lmdrums/sparx-bookwork-logger/releases/latest)
 - Download the **'Sparx Bookwork Logger.zip'** file
 - **Add exception** (see above)
 - **Extract** the file *(This may take a couple of minutes)*
@@ -91,7 +91,7 @@ You will be logged in automatically and you can begin your homework.
 ---|---
 [Lewis M (lmdrums)](https://github.com/lmdrums) | [Aritra (aritra-codes)](https://github.com/aritra-codes)
 
-- Another big thanks to [Tom Schimansky](https://github.com/TomSchimansky) with [CustomTkinter](https://github.com/TomSchimansky/CustomTkinter) for making the UI possible as always.
+- Another big thanks to [Tom Schimansky](https://github.com/TomSchimansky) with [CustomTkinter](https://github.com/TomSchimansky/CustomTkinter) for making the UI possible as always
 
 ---
 
