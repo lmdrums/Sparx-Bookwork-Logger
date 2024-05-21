@@ -91,13 +91,13 @@ def end_hw_session() -> None:
 
 def create_files() -> None:
     if not os.path.exists(get_resource_path(c.ENV_PATH)):
-        if not os.path.exists(get_resource_path(c.SCREENSHOTS_FOLDER_PATH)):
-            os.makedirs(get_resource_path(c.SCREENSHOTS_FOLDER_PATH))
         open(get_resource_path(c.ENV_PATH), "w")
         if not os.path.exists(get_resource_path(c.URL_FILE)):
             open(get_resource_path(c.URL_FILE), "w")
         set_key(get_resource_path(c.ENV_PATH), "SPARXUSERNAME", "")
         set_key(get_resource_path(c.ENV_PATH), "PASSWORD", "")
+    if not os.path.exists(get_resource_path(c.SCREENSHOTS_FOLDER_PATH)):
+            os.makedirs(get_resource_path(c.SCREENSHOTS_FOLDER_PATH))
 
 def change_username_password(username: str, password: str) -> None:
     open(get_resource_path(c.ENV_PATH), "w")
