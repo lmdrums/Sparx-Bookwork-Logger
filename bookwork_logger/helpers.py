@@ -90,7 +90,8 @@ def end_hw_session() -> None:
         os.remove(file_path)
 
 def create_files() -> None:
-    if not os.path.exists(get_resource_path(c.ENV_PATH)):
+    if not os.path.exists(get_resource_path(c.ENV_PATH)) or not os.path.exists(get_resource_path(c.SCREENSHOTS_FOLDER_PATH)):
+        os.makedirs(get_resource_path(c.SCREENSHOTS_FOLDER_PATH))
         open(get_resource_path(c.ENV_PATH), "w")
         if not os.path.exists(get_resource_path(c.URL_FILE)):
             open(get_resource_path(c.URL_FILE), "w")

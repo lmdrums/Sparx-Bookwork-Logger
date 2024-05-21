@@ -18,7 +18,7 @@ Follow the quick and easy setup below to get started...
 
 This project currently only works on [Windows](https://www.microsoft.com/en-gb/windows) but a [Linux](https://en.wikipedia.org/wiki/Linux) application will be coming in the future.
 
-## Installation
+## Installation (.exe)
 
 **You will need to add an exception in your Antivirus software or [Windows Security](https://support.microsoft.com/en-us/windows/add-an-exclusion-to-windows-security-811816c0-4dfd-af4a-47e4-c301afe13b26) to .exe files (make sure to remove after installation) and/or this one specific .exe file.**
 
@@ -36,6 +36,30 @@ This project currently only works on [Windows](https://www.microsoft.com/en-gb/w
 - **Extract** the file *(This may take a couple of minutes)*
 - **Follow setup instructions below ⬇**
 - **Do your maths homework!**
+
+## Installation (Python)
+
+**Ignore this section if you have installed and will use the .exe file (easiest)**
+
+If you don't want the hassle of adding exceptions for .exe files and have a version of [Python 3.10+](https://www.python.org/), you can run a standalone .py file for this application
+
+Firstly, clone the repository (alternatively download and extract the source code)
+
+`git clone https://github.com/lmdrums/Sparx-Bookwork-Logger.git`
+
+Now, change directories to the newly cloned repo
+
+`cd Sparx-Bookwork-Logger`
+
+Install all dependencies (using [pip](https://pip.pypa.io/en/stable/))
+
+`pip3 install -r requirements.txt`
+
+To run the application, run the command
+
+`python3 run.py`
+
+Alternatively, setup a [virtual environment](https://docs.python.org/3/library/venv.html) in your IDE and run from there
 
 ## Setup
 - **Web Setup:**
