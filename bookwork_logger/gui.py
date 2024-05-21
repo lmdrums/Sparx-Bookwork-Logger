@@ -160,6 +160,11 @@ class Settings(CTkToplevel):
                                      command=self.save_function, image=save_image)
         self.save_button.grid(column=0, row=3, padx=10, pady=(10,0), sticky="w")
 
+
+        self.username_entry.bind("<Return>", lambda _: self.save_function())
+        self.password_entry.bind("<Return>", lambda _: self.save_function())
+        self.url_entry.bind("<Return>", lambda _: self.save_function())
+
         self.after(200, lambda: self.lift())
         self.get_info()
 
@@ -183,7 +188,7 @@ class Settings(CTkToplevel):
                     try:
                         h.change_username_password(username, password)
                         h.change_url(url)
-                        messagebox.showinfo("Success", "Settings saved successfully")
+                        messagebox.showinfo("Success", "Settings saved successfully\nPlease reload this application")
                         self.lift()
                     except Exception:
                         messagebox.showerror("Error", "An error occured whilst trying to save settings")
