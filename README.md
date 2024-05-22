@@ -43,7 +43,7 @@ This project currently only works on [Windows](https://www.microsoft.com/en-gb/w
 
 If you don't want the hassle of adding exceptions for .exe files and have a version of [Python 3.10+](https://www.python.org/), you can run a standalone .py file for this application
 
-Firstly, clone the repository (alternatively download and extract the source code)
+Firstly, clone the repository - if you haven't already, install [Git](https://git-scm.com/downloads) (alternatively download and extract the source code)
 
 `git clone https://github.com/lmdrums/Sparx-Bookwork-Logger.git`
 
