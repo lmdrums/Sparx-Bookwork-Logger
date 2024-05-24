@@ -18,9 +18,9 @@ Follow the quick and easy setup below to get started...
 
 This project currently only works on [Windows](https://www.microsoft.com/en-gb/windows) but a [Linux](https://en.wikipedia.org/wiki/Linux) application will be coming in the future.
 
-## Installation (.exe)
+## Installation (.msi)
 
-**You will need to add an exception in your Antivirus software or [Windows Security](https://support.microsoft.com/en-us/windows/add-an-exclusion-to-windows-security-811816c0-4dfd-af4a-47e4-c301afe13b26) to .exe files (make sure to remove after installation) and/or this one specific .exe file.**
+### Important: If you have Antivirus software, you will need to add an exception to the destination folder (more steps below)
 
 **Some useful links:**
 - [Avast Antivirus Exception](https://support.avast.com/en-gb/article/antivirus-scan-exclusions/#pc)
@@ -31,17 +31,23 @@ This project currently only works on [Windows](https://www.microsoft.com/en-gb/w
 
 **Main Installation:**
 - Navigate to the [**latest release**](https://github.com/lmdrums/sparx-bookwork-logger/releases/latest)
-- Download the **'Sparx Bookwork Logger.zip'** file
-- **Add exception** (see above)
-- **Extract** the file *(This may take a couple of minutes)*
-- **Follow setup instructions below ⬇**
+- Download the **'Sparx_Bookwork_Logger_Installer.msi'** file
+- Open the file and click next
+- Once you get to the second page where it asks for a folder to store the installed application, copy that file path for later
+  - **For users with Antivirus Software only**: It is recommended you add your exception before installing, if your antivirus allows it (see above)
+  - Add the exception as the path you copied in the previous step. For example: `C:\Users\YourUsername\AppData\Roaming\lmprogramming\Sparx Bookwork Logger\*`
+  - You may alternatively disable your antivirus software and add an exception after installation
+- Make sure you agree to the License T&C's (checkbox)
+- Install the application
+- A shortcut will be added to your Start Menu and Desktop
+- Follow setup instructions below ⬇
 - **Do your maths homework!**
 
 ## Installation (Python)
 
-**Ignore this section if you have installed and will use the .exe file (easiest)**
+**Ignore this section if you have installed and will use the .msi file (recommended for general purpose)**
 
-If you don't want the hassle of adding exceptions for .exe files and have a version of [Python 3.10+](https://www.python.org/), you can run a standalone .py file for this application
+If you don't want the hassle of adding exceptions for .msi files and have a version of [Python 3.10+](https://www.python.org/), you can run a standalone .py file for this application
 
 Firstly, clone the repository - if you haven't already, install [Git](https://git-scm.com/downloads) (alternatively download and extract the source code)
 
@@ -76,27 +82,25 @@ Alternatively, setup a [virtual environment](https://docs.python.org/3/library/v
 
 - **App Setup:**
 
-  - Navigate to the newly downloaded .exe file (see above)
+  - Navigate to the newly downloaded application (see above)
   - Open the application
   - Go into 'Settings'
     </br>
     ![Settings window](readme_images/settings.png)
-  - Type in your Sparx Username and Password in the corresponding boxes (these will be stored locally on your machine in a .env file)
+  - Type in your Sparx Username and Password in the corresponding boxes (these will be stored locally on your machine in a .ini file)
   - Paste the URL you copied from earlier in the URL box
     </br>
     ![Settings inputs](readme_images/settings_entry.png)
   - **Click Save to save your settings**
-  - **Reload the application before starting to sync settings!**
 
 ### Now you're good to go! 🟢
 
-After reloading, in the application, press **Launch Sparx** to begin *(Warning: this may take a while on the first launch if Chrome isn't already installed - a Chrome driver will be installed to your machine)*
+In the application, press **Launch Sparx** to begin *(Warning: this may take a while on the first launch if Chrome isn't already installed - a Chrome driver will be installed to your machine)*
 
 You will be logged in automatically and you can begin your homework.
 
 ## Important Notes! (Please read) 📜
 
-- Whenever you make **changes** to the **settings**, make sure to **reload** the application to sync your changes
 - If you start **XP Boost** questions, be warned that if you're **still running** Sparx Bookwork Logger, the answers of these questions will **overwrite** previous images with the same code
   - Therefore, whenever you **finish** a homework session and **no more** bookwork checks can be asked about that session, it is recommended you click the *'Clear Homework Session'* button in the **application**
 - If you have completed a question and got it **correct**, please make sure you **leave enough time** to let the application get a **screenshot** of your answer, if not you may get a screenshot which looks like this:
