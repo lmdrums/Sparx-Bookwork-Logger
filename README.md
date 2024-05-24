@@ -45,7 +45,7 @@ This project currently only works on [Windows](https://www.microsoft.com/en-gb/w
 
 ## Installation (Python)
 
-**Ignore this section if you have installed and will use the .msi file (recommended for general purpose)**
+### Ignore this section if you have installed and will use the .msi file (recommended for general purpose)
 
 If you don't want the hassle of adding exceptions for .msi files and have a version of [Python 3.10+](https://www.python.org/), you can run a standalone .py file for this application
 
