@@ -1,7 +1,7 @@
 from customtkinter import (CTk, CTkLabel, CTkEntry, CTkButton, CTkToplevel,
                            CTkImage, CTkFrame, StringVar, CTkSwitch,
                            set_appearance_mode, set_default_color_theme, END)
-from PIL import Image
+from PIL import Image, ImageTk
 from selenium.common.exceptions import InvalidArgumentException
 from tkinter import messagebox
 from threading import Thread
@@ -63,25 +63,57 @@ class App(CTk):
                                           fg_color="#c92020", hover_color="#9c1919", command=self.clear_session)
         self.clear_hw_session.pack(side="right", anchor="se", padx=10, pady=10)
 
+        self.current_bookwork_code = ""
+
         self.image_frame = CTkFrame(self.frame, fg_color="grey85")
         self.image_frame.pack(pady=20, padx=(20,10), fill="both", expand=True, side="bottom", anchor="n")
 
         self.image_label = CTkLabel(self.image_frame, text="")
         self.image_label.pack()
         self.image_label.place(anchor="center", relx=0.5, rely=0.5)
-  
-    def bookwork_check(self, image, bookwork):
-        h.send_notification("Bookwork Check",
-                            f"Bookwork Check! Bookwork code {bookwork} found and displayed.",
-                            get_resource_path(c.NOTIFICATION_ICON_PATH),
-                            get_resource_path(c.NOTIFICATION_SOUND_PATH))
 
+    def display_image(self, image: ImageTk.PhotoImage) -> None:
         self.state("zoomed")
+                
         self.image_frame.configure(fg_color="#EEF4FE")
         self.image_label.configure(image=image)
+
+    def search_for_bookwork(self) -> None:
+        try:
+            bookwork_code = self.bookwork_search.get().upper()
+
+            try:
+                image = h.get_bookwork_image(bookwork_code)
+            except FileNotFoundError:
+                messagebox.showerror("Error", "This bookwork code could not be located.")
+            else:
+                self.display_image(image)
+
+                self.current_bookwork_code = bookwork_code
+        except UserWarning:
+            pass
+  
+    def bookwork_check(self, bookwork_code: str) -> None:
+        if self.current_bookwork_code != bookwork_code:
+            try:
+                image = h.get_bookwork_image(bookwork_code)
+            except FileNotFoundError:
+                h.send_notification("Error",
+                                    "Bookwork code image not found",
+                                    get_resource_path(c.NOTIFICATION_ICON_PATH),
+                                    get_resource_path(c.NOTIFICATION_SOUND_PATH))
+            else:
+                self.display_image(image)
+
+                h.send_notification("Bookwork Check",
+                                    f"Bookwork Check! Bookwork code {bookwork_code} found and displayed.",
+                                    get_resource_path(c.NOTIFICATION_ICON_PATH),
+                                    get_resource_path(c.NOTIFICATION_SOUND_PATH))
+                
+                self.current_bookwork_code = bookwork_code
         
-    def run_sparx(self):
-        def run_script():
+    def run_sparx(self) -> None:
+        def run_script() -> None:
             self.run_button.configure(text="Running...", fg_color=("#325882", "#254260"), state="disabled")
 
             try:
@@ -93,35 +125,21 @@ class App(CTk):
 
         Thread(target=run_script).start()
     
-    def clear_session(self):
+    def clear_session(self) -> None:
         if messagebox.askyesnocancel("Continue?",
                                   "All bookwork codes from this session will be cleared.\nContinue?", 
                                   icon="warning"):
             h.end_hw_session()
             messagebox.showinfo("Success", "This homework session has successfully been deleted")
 
-    def dark_mode(self):
+    def dark_mode(self) -> None:
         value = self.dark_mode_val.get()
         if value == "off":
             set_appearance_mode("light")
         elif value == "on":
             set_appearance_mode("dark")
 
-    def search_for_bookwork(self):
-        try:
-            bookwork = self.bookwork_search.get()
-            image = h.get_bookwork_image(bookwork.upper())
-            if image:
-                self.state("zoomed")
-                
-                self.image_frame.configure(fg_color="#EEF4FE")
-                self.image_label.configure(image=image)
-            else:
-                messagebox.showerror("Error", "This bookwork code could not be located.")
-        except UserWarning:
-            pass
-
-    def settings_function(self):
+    def settings_function(self) -> None:
         settings = Settings()
         settings.mainloop()
 

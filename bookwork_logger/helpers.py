@@ -35,13 +35,7 @@ def question(gui, driver: webdriver.Chrome) -> None:
 
     time.sleep(c.POLLING_FREQUENCY)
     if "wac" in driver.current_url:
-        try:
-            bookwork_check(gui, driver)
-        except FileNotFoundError:
-            send_notification("Error",
-                              "Bookwork code image not found",
-                              get_resource_path(c.NOTIFICATION_ICON_PATH),
-                              get_resource_path(c.NOTIFICATION_SOUND_PATH))
+        bookwork_check(gui, driver)
     else:
         answer_correct = driver.find_element(*c.RESULT_MESSAGE_BANNER_LOCATOR).get_attribute("innerHTML")
 
@@ -56,11 +50,9 @@ def question(gui, driver: webdriver.Chrome) -> None:
 def bookwork_check(gui, driver: webdriver.Chrome) -> None:
     """Gets data from bookwork check"""
     question_info = driver.find_element(*c.BOOKWORK_INFO_LOCATOR).get_attribute("innerHTML")
-    bookwork = question_info.split(" ")[1].strip()
+    bookwork_code = question_info.split(" ")[1].strip()
 
-    image = get_bookwork_image(bookwork)
-
-    gui.bookwork_check(image, bookwork)
+    gui.bookwork_check(bookwork_code)
 
 def get_bookwork_image(bookwork: str) -> ImageTk.PhotoImage:
     image_path = get_resource_path(os.path.join(c.SCREENSHOTS_FOLDER_PATH, f"{bookwork}.png"))
