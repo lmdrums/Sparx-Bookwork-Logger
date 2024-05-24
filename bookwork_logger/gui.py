@@ -2,19 +2,20 @@ from customtkinter import (CTk, CTkLabel, CTkEntry, CTkButton, CTkToplevel,
                            CTkImage, CTkFrame, StringVar, CTkSwitch,
                            set_appearance_mode, set_default_color_theme, END)
 from PIL import Image
-from notifypy import Notify
-
+from selenium.common.exceptions import InvalidArgumentException
 from tkinter import messagebox
 from threading import Thread
 
 import bookwork_logger.constants as c
 import bookwork_logger.helpers as h
 from bookwork_logger.main import main as script
+from utils.path import get_resource_path
+from utils.settings import get_setting, edit_setting
 
-set_default_color_theme(h.get_resource_path(c.THEME_PATH))
+set_default_color_theme(get_resource_path(c.THEME_PATH))
 set_appearance_mode("system")
 
-get_pillow_image = lambda relative_path: Image.open(h.get_resource_path(relative_path))
+get_pillow_image = lambda relative_path: Image.open(get_resource_path(relative_path))
 
 find_image = CTkImage(light_image=get_pillow_image(c.FIND_IMAGE["dark"]),
                           dark_image=get_pillow_image(c.FIND_IMAGE["light"]))
@@ -31,7 +32,7 @@ class App(CTk):
         
         self.title(c.MAIN_TITLE)
         self.geometry(c.MAIN_GEOMETRY)
-        self.iconbitmap(h.get_resource_path(c.WINDOW_ICON_PATH))
+        self.iconbitmap(get_resource_path(c.WINDOW_ICON_PATH))
         
         self.frame = CTkFrame(self)
         self.frame.pack(pady=20, padx=20, fill="both", expand=True)
@@ -70,27 +71,27 @@ class App(CTk):
         self.image_label.place(anchor="center", relx=0.5, rely=0.5)
   
     def bookwork_check(self, image, bookwork):
-        notification = Notify()
-        notification.title = "Bookwork Check"
-        notification.message = f"Bookwork Check! Bookwork code {bookwork} found and displayed."
-        notification.icon = h.get_resource_path(c.NOTIFICATION_ICON_PATH)
-        notification.audio = h.get_resource_path(c.NOTIFICATION_SOUND_PATH)
-        notification.send()
+        h.send_notification("Bookwork Check",
+                            f"Bookwork Check! Bookwork code {bookwork} found and displayed.",
+                            get_resource_path(c.NOTIFICATION_ICON_PATH),
+                            get_resource_path(c.NOTIFICATION_SOUND_PATH))
+
         self.state("zoomed")
         self.image_frame.configure(fg_color="#EEF4FE")
         self.image_label.configure(image=image)
         
     def run_sparx(self):
         def run_script():
+            self.run_button.configure(text="Running...", fg_color=("#325882", "#254260"), state="disabled")
+
             try:
-                self.run_button.configure(text="Running...", fg_color=("#325882", "#254260"), state="disabled")
                 script(self)
-                self.run_button.configure(text="Launch Sparx", fg_color=("#3a7ebf", "#1f538d"), state="normal")
-            except Exception:
+            except InvalidArgumentException:
+                messagebox.showerror("Invalid Settings", "Make sure you have valid settings.")
+            finally:
                 self.run_button.configure(text="Launch Sparx", fg_color=("#3a7ebf", "#1f538d"), state="normal")
 
-        thread = Thread(target=run_script)
-        thread.start()
+        Thread(target=run_script).start()
     
     def clear_session(self):
         if messagebox.askyesnocancel("Continue?",
@@ -130,7 +131,7 @@ class Settings(CTkToplevel):
 
         self.title(c.SETTINGS_TITLE)
         self.geometry(c.SETTINGS_GEOMETRY)
-        self.after(250, lambda: self.iconbitmap(h.get_resource_path(c.WINDOW_ICON_PATH)))
+        self.after(250, lambda: self.iconbitmap(get_resource_path(c.WINDOW_ICON_PATH)))
 
         self.frame = CTkFrame(self)
         self.frame.pack(pady=20, padx=20, fill="both", expand=True)
@@ -165,43 +166,40 @@ class Settings(CTkToplevel):
         self.password_entry.bind("<Return>", lambda _: self.save_function())
         self.url_entry.bind("<Return>", lambda _: self.save_function())
 
-        self.after(200, lambda: self.lift())
+        self.after(200, self.lift)
         self.get_info()
 
     def get_info(self):
         self.username_entry.delete(0, END)
-        self.username_entry.insert(END, h.get_username())
+        self.username_entry.insert(END, get_setting(*c.USERNAME_SETTING_LOCATOR))
         
         self.password_entry.delete(0, END)
-        self.password_entry.insert(END, h.get_password())
+        self.password_entry.insert(END, get_setting(*c.PASSWORD_SETTING_LOCATOR))
 
         self.url_entry.delete(0, END)
-        self.url_entry.insert(END, h.get_url())
+        self.url_entry.insert(END, get_setting(*c.URL_SETTING_LOCATOR))
 
     def save_function(self):
         username = self.username_entry.get()
         password = self.password_entry.get()
         url = self.url_entry.get()
-        if username:
-            if password:
-                if url:
-                    try:
-                        h.change_username_password(username, password)
-                        h.change_url(url)
-                        messagebox.showinfo("Success", "Settings saved successfully\nPlease reload this application")
-                        self.lift()
-                    except Exception:
-                        messagebox.showerror("Error", "An error occured whilst trying to save settings")
-                else:
-                    messagebox.showerror("Error", "Please enter a valid URL")
-                    self.lift()
-            else:
-                messagebox.showerror("Error", "Please enter a valid password")
-                self.lift()
-        else:
+
+        if not username:
             messagebox.showerror("Error", "Please enter a valid username")
+            self.lift()
+        elif not password:
+            messagebox.showerror("Error", "Please enter a valid password")
+            self.lift()
+        elif not url:
+            messagebox.showerror("Error", "Please enter a valid URL")
+            self.lift()
+        else:
+            edit_setting(*c.USERNAME_SETTING_LOCATOR, username)
+            edit_setting(*c.PASSWORD_SETTING_LOCATOR, password)
+            edit_setting(*c.URL_SETTING_LOCATOR, url)
+
+            messagebox.showinfo("Success", "Settings saved successfully")
             self.lift()
 
 def main():
-    app = App()
-    app.mainloop()
+    App().mainloop()

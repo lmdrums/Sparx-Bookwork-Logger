@@ -1,22 +1,32 @@
 from selenium import webdriver
-from selenium.common.exceptions import TimeoutException
+from selenium.common.exceptions import NoSuchElementException, TimeoutException
+import time
 
 import bookwork_logger.helpers as h
 import bookwork_logger.constants as c
+from utils.settings import get_setting
 
 def main(gui):
     try:
         driver = webdriver.Chrome()
 
-        url = open(h.get_resource_path(c.URL_FILE), "r").read()
+        url = get_setting(*c.URL_SETTING_LOCATOR)
         driver.get(url)
 
-        h.login(driver)
+        while True:
+            try:
+                h.login(driver)
+            except (NoSuchElementException, TimeoutException):
+                pass
+            else:
+                break
 
         while True:
             try:
                 h.question(gui, driver)
-            except TimeoutException:
+            except NoSuchElementException:
                 pass
+
+            time.sleep(c.POLLING_FREQUENCY)
     finally:
         driver.quit()
