@@ -44,8 +44,6 @@ DEFAULT_SETTINGS = {
     }
 }
 
-ENV_PATH = os.path.join(FILES_PATH, "credentials.env")
-
 # Images
 FIND_IMAGE = {"light": os.path.join(IMAGES_PATH, "find.png"),
                        "dark": os.path.join(IMAGES_PATH, "find.png")}
