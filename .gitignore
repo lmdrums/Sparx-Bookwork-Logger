@@ -1,5 +1,4 @@
 .venv/
 __pycache__/
 bookwork_logger/screenshots/
-bookwork_logger/files/credentials.env
-bookwork_logger/files/url.txt
+bookwork_logger/files/settings.ini

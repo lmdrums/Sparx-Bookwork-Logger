@@ -1,7 +1,7 @@
 import os
 import time
 
-from notifypy import Notify
+from win11toast import toast
 from PIL import Image, ImageTk
 from selenium import webdriver
 from selenium.webdriver.support import expected_conditions as EC
@@ -82,9 +82,4 @@ def create_files() -> None:
         os.makedirs(get_resource_path(c.SCREENSHOTS_FOLDER_PATH))
 
 def send_notification(title: str, message: str, icon_path: str, sound_path: str) -> None:
-    notification = Notify()
-    notification.title = title
-    notification.message = message
-    notification.icon = icon_path
-    notification.audio = sound_path
-    notification.send()
+    toast(title, message, icon=icon_path, audio=sound_path)
