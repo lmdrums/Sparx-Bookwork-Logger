@@ -123,4 +123,6 @@ You will be logged in automatically and you can begin your homework.
 
 ---
 
-### Any problems with this project, just let me know. 📪
+### [Latest Release Notes](https://lmdrums.github.io/sparx-bookwork-logger-release-notes/)
+
+#### Any problems with this project, just let me know. 📪
