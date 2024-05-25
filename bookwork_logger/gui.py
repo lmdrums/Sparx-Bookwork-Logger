@@ -49,6 +49,7 @@ class App(CTk):
                                         justify="center")
         self.bookwork_search.pack(pady=(15,0))
         self.bookwork_search.bind("<Return>", lambda _: self.search_for_bookwork())
+        self.bookwork_search.bind("<KeyRelease>", lambda _: self.check_bookwork_valid())
 
         self.search_button = CTkButton(self.frame, text="Find", width=100, 
                                        command=self.search_for_bookwork, image=find_image)
@@ -72,9 +73,13 @@ class App(CTk):
         self.image_label.pack()
         self.image_label.place(anchor="center", relx=0.5, rely=0.5)
 
+    def check_bookwork_valid(self):
+        if len(list(self.bookwork_search.get())) > 2:
+            self.bookwork_search.configure(border_color="red")
+        else:
+            self.bookwork_search.configure(border_color="#979DA2")
+
     def display_image(self, image: ImageTk.PhotoImage) -> None:
-        self.state("zoomed")
-                
         self.image_frame.configure(fg_color="#EEF4FE")
         self.image_label.configure(image=image)
 
