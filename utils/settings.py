@@ -2,9 +2,9 @@ from configparser import RawConfigParser, NoSectionError, NoOptionError
 import os
 
 import bookwork_logger.constants as c
-from utils.path import get_project_directory
+from utils.path import get_resource_path
 
-SETTINGS_INI_PATH = os.path.join(get_project_directory(), c.SETTINGS_INI_PATH)
+SETTINGS_INI_PATH = os.path.join(get_resource_path(), c.SETTINGS_INI_PATH)
 
 class InvalidSettingsError(Exception):
     pass
